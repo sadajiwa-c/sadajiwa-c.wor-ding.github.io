@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If I Could Speak...</title>
+    <link rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #bbdeed, #f0e5e5);
+            font-family: 'Tinos', sans-serif;
+            overflow: hidden;
+        }
+
+        .floating-box {
+            width: 300px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.5;
+            display: none;
+            width: 100%;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #2ea2bf;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2ea2bf;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-box" id="floatingBox">
+        <div class="content active">
+            <p>Sebelumnya, i want to say sorry for making you wait this long. Makasih banyak ya, udah bersabar nungguin aku (ngelaprak mulu) :D</p>
+        </div>
+        <div class="content">
+            <p>Let me start it with a little bit TMI. Sebenernya, selain aku sempet pengen mundur kaya yang pernah aku ceritain, aku juga sempet denied myself waktu aku mulai sadar aku naruh perhatian ke kamu. Aku sempet ragu buat maju, karena takut kalo aku bakal jatuh cinta sendirian. Tapi tenyata, aku lebih takut kalo aku kehilangan kesempatan buat kenal lebih jauh sama kamu. So here i am, braving myself to take a step for make a move on you. Dan waktu aku tau ternyata perasaanku berbalas, rasanya kejatuhan duit 1M dari langit pun kalah senengnya sama perasaanku malam itu.</p>
+        </div>
+        <div class="content">
+            <p>Aku nggak punya bayangan jelasnya gimana pandangan kamu tentang aku selama ini. As you already know, aku sering dihajar laprak, dihajar coding, kadang ada rasanya aku pengen buang tuh laprak-laprak biar aku punya waktu buat ngobrol sama kamu terus. Cause i do like you. A lot. Naksirku kalo bisa ditimbang mungkin hasilnya bakal seberat bulan deh. As i said previously, i found comfort in your presence. The more i get to know you, the more I want to adore you, completely.</p>
+        </div>
+        <div class="content">
+            <p>I feel like a piece of my heart was missing for a long time. But lately, that feeling of incompleteness has been disappearing when i realized, my heart has been longing for you to fill that void. Aku suka banget sama kamu. Makin hari rasanya aku makin naksir.</p>
+        </div>
+        <div class="content">
+            <p>I don't think i can stand in this situation anymore. <a href = "index (5).html">So, may i ask you...</a></p>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+    </div>
+
+    <script>
+        const contents = document.querySelectorAll('.content');
+    let currentIndex = 0;
+
+        function showContent(index) {
+            contents[currentIndex].classList.remove('active');
+
+        currentIndex = index;
+            contents[currentIndex].classList.add('active');
+
+        const floatingBox = document.getElementById('floatingBox');
+            floatingBox.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+            floatingBox.style.transform = 'translateX(0)';
+        }, 0);
+
+    updateButtonVisibility();
+    }
+
+    function updateButtonVisibility() {
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        prevButton.style.display = currentIndex > 0 ? 'inline-block' : 'none';
+
+        nextButton.style.display = currentIndex < contents.length - 1 ? 'inline-block' : 'none';
+    }
+
+    document.getElementById('prevButton').addEventListener('click', () => {
+        const newIndex = (currentIndex - 1 + contents.length) % contents.length;
+        showContent(newIndex);
+        });
+
+    document.getElementById('nextButton').addEventListener('click', () => {
+        const newIndex = (currentIndex + 1) % contents.length;
+        showContent(newIndex);
+        });
+
+    showContent(currentIndex);
+    </script>
+    </body>
+    </html>
